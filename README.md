@@ -1,47 +1,55 @@
-# 📊 Previsão de Estoque Inteligente na AWS com [SageMaker Canvas](https://aws.amazon.com/pt/sagemaker/canvas/)
+Relatório de Análise do Modelo de Previsão de Estoque desafio Dio
 
-Bem-vindo ao desafio de projeto "Previsão de Estoque Inteligente na AWS com SageMaker Canvas. Neste Lab DIO, você aprenderá a usar o SageMaker Canvas para criar previsões de estoque baseadas em Machine Learning (ML). Siga os passos abaixo para completar o desafio!
+#Introdução
+Este relatório apresenta a documentação do processo para a criação e avaliação de um modelo de previsão de estoque utilizando o Amazon SageMaker Canvas.
 
-## 📋 Pré-requisitos
+O objetivo é prever a quantidade de estoque disponível para diferentes produtos ao longo do tempo, utilizando dados históricos.
 
-Antes de começar, certifique-se de ter uma conta na AWS. Se precisar de ajuda para criar sua conta, confira nosso repositório [AWS Cloud Quickstart](https://github.com/digitalinnovationone/aws-cloud-quickstart).
+#Dataset
+O dataset utilizado contém as seguintes colunas:
 
+ID_PRODUTO: Identificador único para cada produto.
+DIA: Data da observação.
+FLAG_PROMOCAO: Indicador binário de promoção (0 ou 1).
+QUANTIDADE_ESTOQUE: Quantidade de estoque disponível na data específica.
 
-## 🎯 Objetivos Deste Desafio de Projeto (Lab)
+#Análise Exploratória dos Dados (EDA)
+Informações Gerais e Estatísticas Descritivas:
 
-![image](https://github.com/digitalinnovationone/lab-aws-sagemaker-canvas-estoque/assets/730492/72f5c21f-5562-491e-aa42-2885a3184650)
+O dataset é composto por registros de diferentes produtos ao longo do tempo, com um total de 500 observações.
+As estatísticas descritivas mostraram que a quantidade de estoque varia significativamente entre os produtos, com algumas datas apresentando valores de estoque bem mais altos que outras.
 
-- Dê um fork neste projeto e reescreva este `README.md`. Sinta-se à vontade para detalhar todo o processo de criação do seu Modelo de ML para uma "Previsão de Estoque Inteligente".
-- Para isso, siga o [passo a passo] descrito a seguir e evolua as suas habilidades em ML no-code com o Amazon SageMaker Canvas.
-- Ao concluir, envie a URL do seu repositório com a solução na plataforma da DIO.
+#Distribuição Temporal:
 
+A análise da distribuição dos dados ao longo do tempo revelou padrões de variação no estoque que podem ser indicativos de tendências ou sazonalidades.
+A visualização dos dados ao longo do tempo mostrou flutuações regulares na quantidade de estoque, sugerindo a presença de sazonalidade e tendências.
 
-## 🚀 Passo a Passo
+#Análise Estatística
+--Correlação entre Variáveis
+A análise de correlação indicou uma relação significativa entre a presença de promoções (FLAG_PROMOCAO) e a quantidade de estoque (QUANTIDADE_ESTOQUE). Isso sugere que promoções podem ter um impacto considerável no nível de estoque.
+--Análise de Tendências e Sazonalidades:
 
-### 1. Selecionar Dataset
+A análise das tendências e sazonalidades revelou que os dados de estoque exibem padrões repetitivos ao longo do tempo. Isso é fundamental para a construção de um modelo de previsão eficaz, pois permite ao modelo aprender e prever esses padrões.
 
--   Navegue até a pasta `datasets` deste repositório. Esta pasta contém os datasets que você poderá escolher para treinar e testar seu modelo de ML. Sinta-se à vontade para gerar/enriquecer seus próprios datasets, quanto mais você se engajar, mais relevante esse projeto será em seu portfólio.
--   Escolha o dataset que você usará para treinar seu modelo de previsão de estoque.
--   Faça o upload do dataset no SageMaker Canvas.
+#Treinamento do Modelo
+--Preprocessamento de Dados:
+Os dados foram preparados e divididos em conjuntos de treinamento e teste para garantir que o modelo pudesse ser treinado e validado corretamente.
+Foram utilizadas técnicas de série temporal para estruturar os dados de forma a capturar as dependências temporais adequadas.
+--Treinamento do Modelo:
+Um modelo de previsão de série temporal foi utilizado para capturar as tendências e padrões sazonais nos dados de estoque.
+O modelo foi treinado com dados históricos e configurado para prever a quantidade de estoque para os períodos futuros.
+--Avaliação do Modelo
+Métricas de Desempenho:
+As métricas de desempenho do modelo, como Erro Médio Absoluto (MAE) e Erro Quadrático Médio (MSE), foram calculadas para avaliar a precisão das previsões.
+Os resultados mostraram que o modelo possui um bom desempenho na previsão da quantidade de estoque, com valores de erro aceitáveis.
+--Visualização das Previsões:
+As previsões geradas pelo modelo foram visualizadas e comparadas com os dados reais de estoque.
+A visualização demonstrou que as previsões do modelo seguem de perto os valores reais, capturando bem as tendências e variações sazonais.
+#Conclusão
+O modelo de previsão de estoque desenvolvido utilizando o Amazon SageMaker Canvas demonstrou ser eficaz na previsão da quantidade de estoque para diferentes produtos ao longo do tempo. A análise estatística e as métricas de desempenho confirmaram que o modelo pode ser utilizado para ajudar a gerenciar os níveis de estoque de forma mais precisa e eficiente.
 
-### 2. Construir/Treinar
-
--   No SageMaker Canvas, importe o dataset que você selecionou.
--   Configure as variáveis de entrada e saída de acordo com os dados.
--   Inicie o treinamento do modelo. Isso pode levar algum tempo, dependendo do tamanho do dataset.
-
-### 3. Analisar
-
--   Após o treinamento, examine as métricas de performance do modelo.
--   Verifique as principais características que influenciam as previsões.
--   Faça ajustes no modelo se necessário e re-treine até obter um desempenho satisfatório.
-
-### 4. Prever
-
--   Use o modelo treinado para fazer previsões de estoque.
--   Exporte os resultados e analise as previsões geradas.
--   Documente suas conclusões e qualquer insight obtido a partir das previsões.
-
-## 🤔 Dúvidas?
-
-Esperamos que esta experiência tenha sido enriquecedora e que você tenha aprendido mais sobre Machine Learning aplicado a problemas reais. Se tiver alguma dúvida, não hesite em abrir uma issue neste repositório ou entrar em contato com a equipe da DIO.
+Próximos Passos
+Implementação do Modelo em Produção: Integrar o modelo ao sistema de gerenciamento de estoque para automação das previsões.
+Monitoramento e Ajustes Contínuos: Monitorar o desempenho do modelo em produção e fazer ajustes conforme necessário para manter a precisão das previsões.
+Documentação e Compartilhamento: Documentar detalhadamente todo o processo e compartilhar no repositório GitHub para facilitar a reprodução e contribuição de outros desenvolvedores.
+Este relatório proporciona uma visão abrangente do processo de desenvolvimento e análise do modelo de previsão de estoque, utilizando uma abordagem no-code com o Amazon SageMaker Canvas.
